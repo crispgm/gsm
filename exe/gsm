@@ -11,10 +11,15 @@ Mercenary.program(:gsm) do |p|
   p.syntax "gsm <subcommand> [options]"
 
   p.command(:list) do |c|
-    c.syntax "new PATH"
+    c.syntax "list"
     c.description "List all sources"
 
     c.action do |args, options|
+      gem = Gsm::Gem.new
+      gem.load
+      gem.sources.each do |name, url|
+        puts "#{name}: #{url}"
+      end
     end
   end
 
@@ -29,6 +34,8 @@ Mercenary.program(:gsm) do |p|
   p.command(:add) do |c|
     c.syntax "add [source][url]"
     c.description "Add source"
+
+    c.option "use", "--use", "Add and use source"
 
     c.action do |_, _|
     end
@@ -51,12 +58,24 @@ Mercenary.program(:gsm) do |p|
   end
 
   p.command(:mirror) do |c|
-  	c.syntax "mirror [source]"
-  	c.description "Mirror source for Bundler"
+    c.syntax "mirror [source]"
+    c.description "Mirror source for Bundler"
 
-  	c.option "reset", "--reset", "Reset bundler mirror"
+    c.option "reset", "--reset", "Reset bundler mirror"
 
     c.action do |_, _|
+      # Gsm::Bundle.mirror()
     end
   end
+
+  p.command(:help) do |c|
+    c.syntax "help"
+    c.description "Show usage"
+
+    c.action do |_, _|
+      puts p
+    end
+  end
+
+  p.default_command(:help)
 end
