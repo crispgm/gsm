@@ -5,6 +5,7 @@ PATH
       mercenary
 
 GEM
+  remote: https://rubygems.org/
   specs:
     codeclimate-test-reporter (0.6.0)
       simplecov (>= 0.7.1, < 1.0.0)
