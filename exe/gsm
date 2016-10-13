@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), *%w(.. lib)))
+
+require "gsm"
+require "mercenary"
+
+Mercenary.program(:gsm) do |p|
+  p.version Gsm::VERSION
+  p.description "GSM Sources Manager"
+  p.syntax "gsm <subcommand> [options]"
+
+  p.command(:list) do |c|
+    c.syntax "new PATH"
+    c.description "List all sources"
+
+    c.action do |args, options|
+    end
+  end
+
+  p.command(:use) do |c|
+    c.syntax "use [source]"
+    c.description "Use source"
+
+    c.action do |_, options|
+    end
+  end
+
+  p.command(:add) do |c|
+    c.syntax "add [source][url]"
+    c.description "Add source"
+
+    c.action do |_, _|
+    end
+  end
+
+  p.command(:del) do |c|
+    c.syntax "del [source]"
+    c.description "Delete source"
+
+    c.action do |_, _|
+    end
+  end
+
+  p.command(:reset) do |c|
+    c.syntax "reset"
+    c.description "Reset all sources"
+
+    c.action do |_, _|
+    end
+  end
+
+  p.command(:mirror) do |c|
+  	c.syntax "mirror [source]"
+  	c.description "Mirror source for Bundler"
+
+  	c.option "reset", "--reset", "Reset bundler mirror"
+
+    c.action do |_, _|
+    end
+  end
+end

@@ -6,7 +6,7 @@
 [![Test Coverage](https://codeclimate.com/github/crispgm/gsm/badges/coverage.svg)](https://codeclimate.com/github/crispgm/gsm/coverage)
 [![BADGINATOR](https://badginator.herokuapp.com/crispgm/gsm.svg)](https://github.com/defunctzombie/badginator)
 
-GSM means GSM Sources Manager as a recursive acronym or simple Gem Sources Manager.
+GSM means GSM Sources Manager as a recursive acronym or simply Gem Sources Manager.
 
 ## Installation
 
