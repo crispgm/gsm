@@ -13,7 +13,7 @@ class TestGem < Minitest::Test
       end
 
       should "load with gem command" do
-        assert_equal({"Amethyst" => "https://rubygems.org"}, @gem.sources)
+        assert_equal({"Amethyst" => "https://rubygems.org/"}, @gem.sources)
       end
 
       teardown do
