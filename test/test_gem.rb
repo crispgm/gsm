@@ -57,6 +57,12 @@ class TestGem < Minitest::Test
       should "return gem url in use when calling to_s" do
         assert_equal("https://rubygems.org/", @gem.to_s)
       end
+
+      should "reset all data" do
+        @gem.reset
+        assert_empty(@gem.use_name)
+        assert_empty(@gem.sources)
+      end
     end
 
     context "init with multiple local gem sources" do
