@@ -38,6 +38,7 @@ class TestGem < Minitest::Test
     context "init with good yaml" do
       setup do
         @gem = Gsm::Gem.new("test/conf/good.yml")
+        system("cp test/conf/good.yml test/conf/good.yml.bak")
       end
 
       should "use_name be rubygems" do
@@ -62,6 +63,10 @@ class TestGem < Minitest::Test
         @gem.reset
         assert_empty(@gem.use_name)
         assert_empty(@gem.sources)
+      end
+
+      teardown do
+        system("mv test/conf/good.yml.bak test/conf/good.yml")
       end
     end
 
