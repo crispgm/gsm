@@ -37,10 +37,10 @@ Usage: gsm [options] [command]
 
 ## Sources
 
-* RubyGems
-* RubyChina
-* Taobao
+* [RubyGems](https://rubygems.org/)
+* [RubyChina](https://gems.ruby-china.org/)
+* [Taobao](https://ruby.taobao.org/)
 
 ## License
 
-MIT
+[MIT](/LICENSE)
