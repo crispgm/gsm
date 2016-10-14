@@ -56,7 +56,7 @@ module Gsm
     end
 
     def del(name)
-      # TODO
+      @sources.delete(name)
     end
 
     def get
@@ -69,8 +69,11 @@ module Gsm
       @use_name = name
     end
 
+    def save
+    end
+
     def to_s
-      return if @sources[@use_name]
+      return @sources[@use_name] if @sources.has_key?(@use_name)
     end
 
     private
@@ -89,9 +92,11 @@ module Gsm
     private
     def load_from_yaml?
       # read yaml
-      if File.exist? @conf_path
-        data = YAML.load_file @conf_path
+      if File.exist?(@conf_path)
+        require "yaml"
+        data = YAML.load_file(@conf_path)
         @use_name = data["use"]
+        @sources = data["sources"]
         true
       else
         f = File.new(@conf_path, "w")

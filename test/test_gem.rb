@@ -1,7 +1,7 @@
 require "helper"
 
 class TestGem < Minitest::Test
-  context nil do
+  context "test gem" do
     context "init without yaml" do
       setup do
         system("rm test/conf/test.yml")
@@ -23,6 +23,33 @@ class TestGem < Minitest::Test
       teardown do
         system("rm test/conf/test.yml")
       end
+    end
+
+    context "init with good yaml" do
+      setup do
+        @gem = Gsm::Gem.new("test/conf/good.yml")
+      end
+
+      should "use rubygems" do
+        assert_equal("rubygems", @gem.use_name)
+        assert_equal("rubygems", @gem.get)
+      end
+      
+      should "list sources" do
+        expect = {
+          "rubygems" => "https://rubygems.org/",
+          "rubychina" => "https://gems.ruby-china.org/",
+          "rubytaobao" => "https://ruby.taobao.org/"
+        }
+        assert_equal(expect, @gem.sources)
+      end
+
+      should "return gem url in use when calling to_s" do
+        assert_equal("https://rubygems.org/", @gem.to_s)
+      end
+    end
+
+    context "init with multiple local gem sources" do
     end
   end
 end
