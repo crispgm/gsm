@@ -78,8 +78,8 @@ module Gsm
     end
 
     def use(name)
-      return false if @sources.has_key?(name)
-      return true if @use_name.eql?(name)
+      return false if !@sources.has_key?(name)
+      return @use_name if @use_name.eql?(name)
 
       if !apply_source(name)
         return false
