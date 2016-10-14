@@ -13,7 +13,11 @@ class TestGem < Minitest::Test
       end
 
       should "load with gem command" do
-        assert_equal({"Amethyst" => "https://rubygems.org/"}, @gem.sources)
+        if ENV["GSM_TEST_MODE"] == "CI"
+          assert_equal({"Amethyst" => "https://rubygems.org/"}, @gem.sources)
+        else
+          assert_equal({"Amethyst" => "https://gems.ruby-china.org/"}, @gem.sources)
+        end
       end
 
       teardown do

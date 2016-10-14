@@ -45,9 +45,7 @@ module Gsm
     end
 
     def add(name, url)
-      if @sources.has_key?(name)
-        return false
-      end
+      return false if validate_name?(name)
 
       # validate url
       if !validate_url?(url)
@@ -66,15 +64,21 @@ module Gsm
     end
 
     def use(name)
-      if sources.has_key?(name)
-        return false
-      end
+      return false if validate_name?(name)
 
       @use_name = name
     end
 
     def to_s
       return if @sources[@use_name]
+    end
+
+    private
+    def validate_name?(name)
+      return false if name.empty?
+      return false if name.start_with?("--")
+      return false if @sources.has_key?(name)
+      true
     end
 
     private
