@@ -40,7 +40,7 @@ class TestGem < Minitest::Test
         @gem = Gsm::Gem.new("test/conf/good.yml")
       end
 
-      should "use rubygems" do
+      should "use_name be rubygems" do
         assert_equal("rubygems", @gem.use_name)
         assert_equal("rubygems", @gem.get)
       end

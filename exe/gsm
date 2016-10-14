@@ -17,8 +17,6 @@ Mercenary.program(:gsm) do |p|
     c.description "List all sources"
 
     c.action do |_, _|
-      gem = Gsm::Gem.new
-      gem.load
       gem.sources.each do |name, url|
         puts "#{name}: #{url}"
       end
@@ -29,7 +27,9 @@ Mercenary.program(:gsm) do |p|
     c.syntax "use [source]"
     c.description "Use source"
 
-    c.action do |args, opts|
+    c.action do |args, _|
+      name = args[0]
+      gem.use(name)
     end
   end
 
@@ -43,6 +43,15 @@ Mercenary.program(:gsm) do |p|
       name = args[0]
       url = args[1]
       is_use = opts["use"]
+
+      if gem.add(name, url)
+        if is_use
+          gem.use(name)
+        end
+        gem.save
+      else
+        puts "GSM Error: Illegal name/url."
+      end
     end
   end
 
@@ -50,7 +59,10 @@ Mercenary.program(:gsm) do |p|
     c.syntax "del [source]"
     c.description "Delete source"
 
-    c.action do |args, opts|
+    c.action do |args, _|
+      name = args[0]
+      gem.del(name)
+      gem.save
     end
   end
 
@@ -58,7 +70,9 @@ Mercenary.program(:gsm) do |p|
     c.syntax "reset"
     c.description "Reset all sources"
 
-    c.action do |args, opts|
+    c.action do |_, _|
+      gem.reset
+      gem.save
     end
   end
 

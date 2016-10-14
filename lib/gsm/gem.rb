@@ -23,14 +23,13 @@ module Gsm
 
     def initialize(conf_path)
       @sources = Hash.new
+      @use_name = ""
       @name_pivot = 0
       @conf_path = conf_path
 
       if !load_from_yaml?
         # load from `gem sources`
         load
-
-        @use_name = ""
       end
     end
 
@@ -67,23 +66,27 @@ module Gsm
       @use_name
     end
 
+    def reset
+      @use_name.clear
+      @sources.clear
+    end
+
     def use(name)
       return false if validate_name?(name)
 
       @use_name = name
-
       apply_source
-      save
     end
 
     def save
       data = {
-        "use": @use_name,
-        "sources": @sources
+        :use => @use_name,
+        :sources => @sources
       }
       # write to file
       f = File.new(@conf_path, "w")
-      f.syswrite(YAML.dump(data))
+      f.syswrite(data.to_yaml)
+      f.close
     end
 
     def to_s
@@ -117,8 +120,8 @@ module Gsm
       # read yaml
       if File.exist?(@conf_path)
         data = YAML.load_file(@conf_path)
-        @use_name = data["use"]
-        @sources = data["sources"]
+        @use_name = data[:use]
+        @sources = data[:sources]
         true
       else
         f = File.new(@conf_path, "w")
