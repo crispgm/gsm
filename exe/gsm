@@ -10,11 +10,13 @@ Mercenary.program(:gsm) do |p|
   p.description "GSM Sources Manager"
   p.syntax "gsm <subcommand> [options]"
 
+  gem = Gsm::Gem.new("sources.yml")
+
   p.command(:list) do |c|
     c.syntax "list"
     c.description "List all sources"
 
-    c.action do |args, options|
+    c.action do |_, _|
       gem = Gsm::Gem.new
       gem.load
       gem.sources.each do |name, url|
@@ -27,17 +29,20 @@ Mercenary.program(:gsm) do |p|
     c.syntax "use [source]"
     c.description "Use source"
 
-    c.action do |_, options|
+    c.action do |args, opts|
     end
   end
 
   p.command(:add) do |c|
-    c.syntax "add [source][url]"
+    c.syntax "add [name] [url]"
     c.description "Add source"
 
     c.option "use", "--use", "Add and use source"
 
-    c.action do |_, _|
+    c.action do |args, opts|
+      name = args[0]
+      url = args[1]
+      is_use = opts["use"]
     end
   end
 
@@ -45,7 +50,7 @@ Mercenary.program(:gsm) do |p|
     c.syntax "del [source]"
     c.description "Delete source"
 
-    c.action do |_, _|
+    c.action do |args, opts|
     end
   end
 
@@ -53,7 +58,7 @@ Mercenary.program(:gsm) do |p|
     c.syntax "reset"
     c.description "Reset all sources"
 
-    c.action do |_, _|
+    c.action do |args, opts|
     end
   end
 
@@ -63,7 +68,7 @@ Mercenary.program(:gsm) do |p|
 
     c.option "reset", "--reset", "Reset bundler mirror"
 
-    c.action do |_, _|
+    c.action do |args, opts|
       # Gsm::Bundle.mirror()
     end
   end
