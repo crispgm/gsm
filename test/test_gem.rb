@@ -20,6 +20,16 @@ class TestGem < Minitest::Test
         end
       end
 
+      should "use source" do
+        @gem.use("Amethyst")
+        outputs = `gem sources -l`
+        if ENV["GSM_TEST_MODE"] == "CI"
+          assert_equal("*** CURRENT SOURCES ***\n\nhttps://rubygems.org/\n", outputs)
+        else
+          assert_equal("*** CURRENT SOURCES ***\n\nhttps://gems.ruby-china.org/\n", outputs)
+        end
+      end
+
       teardown do
         system("rm test/conf/test.yml")
       end
