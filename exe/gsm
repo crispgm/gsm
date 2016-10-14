@@ -35,8 +35,7 @@ Mercenary.program(:gsm) do |p|
       name = args[0]
       use = gem.use(name)
       if use
-        gem.save
-        puts "GSM: Source `#{use}` is applied."
+        puts "GSM: Source `#{use}` has been applied."
       else
         puts "GSM Error: Illegal source `#{name}`."
       end
@@ -60,7 +59,6 @@ Mercenary.program(:gsm) do |p|
             puts "GSM Error: Illegal source `#{name}`."
           end
         end
-        gem.save
       else
         puts "GSM Error: Illegal name/url."
       end
@@ -81,8 +79,6 @@ Mercenary.program(:gsm) do |p|
         puts "GSM Error: No source name with `#{name}`."
         return
       end
-
-      gem.save
     end
   end
 
@@ -92,7 +88,6 @@ Mercenary.program(:gsm) do |p|
 
     c.action do |_, _|
       gem.reset
-      gem.save
     end
   end
 
@@ -103,7 +98,21 @@ Mercenary.program(:gsm) do |p|
     c.option "reset", "--reset", "Reset bundler mirror"
 
     c.action do |args, opts|
-      # Gsm::Bundle.mirror()
+      if opts["reset"]
+        Gsm::Bundle.reset
+        return
+      end
+
+      if args.size == 0
+        name = gem.get
+        if name.empty?
+          puts "GSM Error: no default source for mirror."
+          return
+        end
+      else
+        name = args[0]
+      end
+      Gsm::Bundle.mirror(gem.sources[name])
     end
   end
 

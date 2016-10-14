@@ -31,6 +31,7 @@ module Gsm
         # load from `gem sources`
         load
       end
+      save
     end
 
     def load
@@ -75,6 +76,7 @@ module Gsm
     def reset
       @use_name.clear
       @sources.clear
+      save
     end
 
     def use(name)
@@ -86,6 +88,8 @@ module Gsm
       end
 
       @use_name = name
+      save
+
       @use_name
     end
 
@@ -136,8 +140,8 @@ module Gsm
       # read yaml
       if File.exist?(@conf_path)
         data = YAML.load_file(@conf_path)
-        @use_name = data[:use]
-        @sources = data[:sources]
+        @use_name = data[:use] if data.has_key?(:use)
+        @sources = data[:sources] if data.has_key?(:sources)
         true
       else
         f = File.new(@conf_path, "w")
