@@ -34,7 +34,7 @@ module Gsm
     end
 
     def load
-      outputs = `gem source -l`
+      outputs = `gem sources -l`
       outputs.split("\n").each do |line|
         line.strip!
         if validate_url?(line)
@@ -54,12 +54,18 @@ module Gsm
 
       @sources[name] = url
       save
+
+      name
     end
 
     def del(name)
       return false if @use_name.eql?(name)
+      return nil if !@sources.has_key?(name)
+
       @sources.delete(name)
       save
+
+      name
     end
 
     def get
@@ -72,10 +78,15 @@ module Gsm
     end
 
     def use(name)
-      return false if validate_name?(name)
+      return false if @sources.has_key?(name)
+      return true if @use_name.eql?(name)
+
+      if !apply_source(name)
+        return false
+      end
 
       @use_name = name
-      apply_source
+      @use_name
     end
 
     def save
@@ -94,18 +105,23 @@ module Gsm
     end
 
     private
-    def apply_source
-      `gem sources -c`
+    def apply_source(name)
+      outputs = `gem sources -l`
+      outputs.split("\n").each do |line|
+        line.strip!
+        if validate_url?(line)
+          `gem sources --remove #{line}`
+        end
+      end
 
-      url = @sources[@use_name]
-
-      `gem sources --add #{url}`
+      url = @sources[name]
+      output = `gem sources --add #{url}`
+      output.include?("#{url} added to sources")
     end
 
     private
     def validate_name?(name)
-      return false if name.empty?
-      return false if name.start_with?("--")
+      return false if %r{[a-zA-Z]{1,32}*} =~ name
       return false if @sources.has_key?(name)
       true
     end

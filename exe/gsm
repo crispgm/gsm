@@ -18,7 +18,11 @@ Mercenary.program(:gsm) do |p|
 
     c.action do |_, _|
       gem.sources.each do |name, url|
-        puts "#{name}: #{url}"
+        use_mark = ""
+        if gem.get == name
+          use_mark = "(*)"
+        end
+        puts "#{name}: #{url} #{use_mark}"
       end
     end
   end
@@ -29,7 +33,13 @@ Mercenary.program(:gsm) do |p|
 
     c.action do |args, _|
       name = args[0]
-      gem.use(name)
+      use = gem.use(name)
+      if use
+        gem.save
+        puts "GSM: Source `#{use}` is applied."
+      else
+        puts "GSM Error: Illegal source `#{name}`."
+      end
     end
   end
 
@@ -46,7 +56,9 @@ Mercenary.program(:gsm) do |p|
 
       if gem.add(name, url)
         if is_use
-          gem.use(name)
+          if !gem.use(name)
+            puts "GSM Error: Illegal source `#{name}`."
+          end
         end
         gem.save
       else
@@ -61,7 +73,15 @@ Mercenary.program(:gsm) do |p|
 
     c.action do |args, _|
       name = args[0]
-      gem.del(name)
+      ret = gem.del(name)
+      if ret == false
+        puts "GSM Error: Source is in use. Please switch to other source in advance."
+        return
+      elsif ret == nil
+        puts "GSM Error: No source name with `#{name}`."
+        return
+      end
+
       gem.save
     end
   end

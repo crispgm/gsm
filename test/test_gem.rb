@@ -8,11 +8,11 @@ class TestGem < Minitest::Test
         @gem = Gsm::Gem.new("test/conf/test.yml")
       end
       
-      should "load nothing" do
+      should "load no use_name" do
         assert_equal("", @gem.use_name)
       end
 
-      should "load with gem command" do
+      should "load sources from gem command" do
         if ENV["GSM_TEST_MODE"] == "CI"
           assert_equal({"Amethyst" => "https://rubygems.org/"}, @gem.sources)
         else
