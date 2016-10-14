@@ -1,6 +1,7 @@
 module Gsm
   class Gem
-
+    require "yaml"
+    
     attr_reader :conf_path, :name_pivot
     attr_reader :sources
     attr_reader :use_name
@@ -53,10 +54,13 @@ module Gsm
       end
 
       @sources[name] = url
+      save
     end
 
     def del(name)
+      return false if @use_name.eql?(name)
       @sources.delete(name)
+      save
     end
 
     def get
@@ -67,13 +71,32 @@ module Gsm
       return false if validate_name?(name)
 
       @use_name = name
+
+      apply_source
+      save
     end
 
     def save
+      data = {
+        "use": @use_name,
+        "sources": @sources
+      }
+      # write to file
+      f = File.new(@conf_path, "w")
+      f.syswrite(YAML.dump(data))
     end
 
     def to_s
       return @sources[@use_name] if @sources.has_key?(@use_name)
+    end
+
+    private
+    def apply_source
+      `gem sources -c`
+
+      url = @sources[@use_name]
+
+      `gem sources --add #{url}`
     end
 
     private
@@ -93,7 +116,6 @@ module Gsm
     def load_from_yaml?
       # read yaml
       if File.exist?(@conf_path)
-        require "yaml"
         data = YAML.load_file(@conf_path)
         @use_name = data["use"]
         @sources = data["sources"]
