@@ -13,7 +13,7 @@ end
 task :count do
   files = `git ls-files -z`.split("\x0")
   shell_cmd = "wc -l "
-  files.grep(%r{^(exe|lib|test)/}).each do |f|
+  files.grep(%r{^(exe|lib|test)/}).grep(%r{exe|.rb}).each do |f|
     shell_cmd << f << " \\\n"
   end
   begin

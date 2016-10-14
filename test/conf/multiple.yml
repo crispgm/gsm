@@ -1,0 +1,6 @@
+---
+:sources:
+  rubygems: https://rubygems.org/
+  rubychina: https://gems.ruby-china.org/
+  rubytaobao: https://ruby.taobao.org/
+:use: rubygems
