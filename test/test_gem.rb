@@ -58,6 +58,25 @@ class TestGem < Minitest::Test
         end
       end
 
+      context "delete source" do
+        setup do
+          @gem.add("Test", "https://rubygems.org/")
+        end
+
+        should "return false if source is in use" do
+          @gem.use("Amethyst")
+          assert_equal(false, @gem.del("Amethyst"))
+        end
+
+        should "return nil if source inexists" do
+          assert_nil(@gem.del("aaa"))
+        end
+
+        should "return name if succeed" do
+          assert_equal("Test", @gem.del("Test"))
+        end
+      end
+
       teardown do
         system("rm test/conf/test.yml")
       end
