@@ -27,6 +27,43 @@ class TestGem < Minitest::Test
         end
       end
 
+      context "generate names" do
+        setup do
+          system("rm test/conf/test_name.yml")
+          @gem_name = Gsm::Gem.new("test/conf/test_name.yml")
+        end
+
+        should "pass pivot when name exsits" do
+          @gem_name.add("Emerald", "http://aaa")
+          @gem_name.load("http://aaa\nhttps://aaa\nhttp://bbb")
+          assert_equal(true, @gem_name.sources.has_key?("Chrysocolla"))
+          assert_equal(true, @gem_name.sources.has_key?("Hematite"))
+        end
+
+        should "add postfix when list is long" do
+          source_list = <<EOB
+http://1
+https://2
+http://3
+http://4
+http://5
+http://6
+http://7
+http://8
+http://9
+http://10
+http://11
+http://12
+EOB
+          @gem_name.load(source_list)
+          assert_equal(true, @gem_name.sources.has_key?("Emerald-1"))
+        end
+
+        teardown do
+          system("rm test/conf/test_name.yml")
+        end
+      end
+
       context "use source" do
         setup do
           system("rm test/conf/test_use.yml")

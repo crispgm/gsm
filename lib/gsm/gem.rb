@@ -34,8 +34,12 @@ module Gsm
       save
     end
 
-    def load
-      outputs = `gem sources -l`
+    def load(mock = nil)
+      if mock != nil
+        outputs = mock
+      else
+        outputs = `gem sources -l`
+      end
       outputs.split("\n").each do |line|
         line.strip!
         if validate_url?(line)
@@ -152,13 +156,24 @@ module Gsm
 
     private
     def generate_name
-      if @name_pivot >= MAX_GENERATED_NAMES - 1
-        return GEMSTONE_NAMES[(++@name_pivot)-MAX_GENERATED_NAMES] << 
-          "-" << 
-          (@name_pivot/MAX_GENERATED_NAMES).to_s
-      end
+      gen_name = ""
 
-      GEMSTONE_NAMES[++@name_pivot]
+      while true
+        if @name_pivot < MAX_GENERATED_NAMES
+          gen_name = GEMSTONE_NAMES[@name_pivot]
+        else
+          gen_name = GEMSTONE_NAMES[@name_pivot - MAX_GENERATED_NAMES] << 
+            "-" << 
+            (@name_pivot % MAX_GENERATED_NAMES).to_s
+        end
+
+        @name_pivot = @name_pivot + 1
+
+        if !@sources.has_key?(gen_name)
+          return gen_name
+        end
+      end
     end
+
   end
 end
