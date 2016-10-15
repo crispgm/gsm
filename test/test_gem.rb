@@ -30,6 +30,34 @@ class TestGem < Minitest::Test
         end
       end
 
+      context "add source" do
+        should "return false when name is empty" do
+          assert_equal(false, @gem.add("", ""))
+        end
+
+        should "return false when name is nil" do
+          assert_equal(false, @gem.add(nil, ""))
+        end
+
+        should "return false when name's length is large than 32" do
+          assert_equal(false, @gem.add("abcdefghijklmnopqrstuvwxyzqwertyu", ""))
+        end
+
+        should "return false when name exists" do
+          assert_equal(false, @gem.add("Amethyst", ""))
+        end
+
+        should "return false when url is invalid" do
+          assert_equal(false, @gem.add("Test", "http-://rubygems.org/"))
+        end
+
+        should "return name when succeed" do
+          assert_equal("Test", @gem.add("Test", "https://rubygems.org/"))
+          assert_equal(true, @gem.sources.has_key?("Test"))
+          assert_equal("https://rubygems.org/", @gem.sources["Test"])
+        end
+      end
+
       teardown do
         system("rm test/conf/test.yml")
       end
