@@ -160,9 +160,9 @@ module Gsm
 
       while true
         if @name_pivot < MAX_GENERATED_NAMES
-          gen_name = GEMSTONE_NAMES[@name_pivot]
+          gen_name = GEMSTONE_NAMES[@name_pivot].to_s
         else
-          gen_name = GEMSTONE_NAMES[@name_pivot - MAX_GENERATED_NAMES] << 
+          gen_name = GEMSTONE_NAMES[@name_pivot - MAX_GENERATED_NAMES].to_s << 
             "-" << 
             (@name_pivot % MAX_GENERATED_NAMES).to_s
         end

@@ -43,7 +43,7 @@ class TestGem < Minitest::Test
         should "add postfix when list is long" do
           source_list = <<EOB
 http://1
-https://2
+http://2
 http://3
 http://4
 http://5
@@ -54,6 +54,17 @@ http://9
 http://10
 http://11
 http://12
+http://13
+http://14
+http://15
+http://16
+http://17
+http://18
+http://19
+http://20
+http://21
+http://22
+http://23
 EOB
           @gem_name.load(source_list)
           assert_equal(true, @gem_name.sources.has_key?("Emerald-1"))
