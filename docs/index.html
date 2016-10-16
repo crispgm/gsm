@@ -20,6 +20,10 @@ layout: default
             <a href="#guide">User Guide</a>
           </div>
         </div>
+        <div id="intro-version">
+          <span>Version <a href="#changelog">{{ site.data.changelog[0].version }}</a> ·&nbsp;</span>
+          <span>Created by <a href="https://crispgm.com">David Zhang</a></span>
+        </div>
       </div>
       <div id="social">
         <a class="github-button" href="https://github.com/crispgm/gsm" data-icon="octicon-star" data-count-href="/crispgm/gsm/stargazers" data-count-api="/repos/crispgm/gsm#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star crispgm/gsm on GitHub">Star</a>
@@ -38,6 +42,24 @@ layout: default
           User Guide
         </div>
         {{ site.data.index.guide | markdownify }}
+      </div>
+      <div id="changelog" class="content">
+        <div class="content-title">
+          Changelog
+        </div>
+        {% for change in site.data.changelog %}
+          <h3>Version {{ change.version }}</h3>
+          <ul>
+            {% for log in change.changes %}
+              <li>
+                {{ log.text }}
+                {% if log.issue != nil %}
+                  <a href="https://github.com/crispgm/gsm/issues/{{ log.issue }}">#{{ log.issue }}</a></li>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
       </div>
       <div id="contributing" class="content">
         <div class="content-title">

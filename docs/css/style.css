@@ -113,6 +113,9 @@ code.highlighter-rouge:hover {
   display: flex;
   justify-content: center;
 }
+#intro-version {
+  margin-top: 1rem;
+}
 @media (max-width: 48rem) {
   #intro-text {
     margin-top: 3rem;
@@ -148,7 +151,7 @@ code.highlighter-rouge:hover {
 }
 #social {
   text-align: center;
-  padding-top: 2rem;
+  margin-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: solid #aaa .1rem;
 }
