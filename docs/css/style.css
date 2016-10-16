@@ -125,12 +125,12 @@ code.highlighter-rouge {
   }
 }
 .install-item {
-  padding: .5rem 1rem .5rem 1rem;
+  padding: .25rem 1rem .25rem 1rem;
   font-size: 1.2rem;
   color: #000;
   background-color: #fff;
   border: .15rem solid #000;
-  border-radius: .8rem;
+  border-radius: .6rem;
 }
 .install-item:hover {
   border: .15rem solid #06c;
