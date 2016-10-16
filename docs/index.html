@@ -21,7 +21,7 @@ layout: default
           </div>
         </div>
         <div id="intro-version">
-          <span>Version <a href="#changelog">{{ site.data.changelog[0].version }}</a> ·&nbsp;</span>
+          <span>Version <a href="#changelog">{{ site.data.changelog[0].version }}</a> ·</span>
           <span>Created by <a href="https://crispgm.com">David Zhang</a></span>
         </div>
       </div>
@@ -36,12 +36,18 @@ layout: default
         <div>
           {{ site.data.index.install | markdownify }}
         </div>
+        <div class="back-top">
+          <a href="#topbar">Back to top</a>
+        </div>
       </div>
       <div id="guide" class="content">
         <div class="content-title">
           User Guide
         </div>
         {{ site.data.index.guide | markdownify }}
+        <div class="back-top">
+          <a href="#topbar">Back to top</a>
+        </div>
       </div>
       <div id="changelog" class="content">
         <div class="content-title">
@@ -60,10 +66,16 @@ layout: default
             {% endfor %}
           </ul>
         {% endfor %}
+        <div class="back-top">
+          <a href="#topbar">Back to top</a>
+        </div>
       </div>
       <div id="contributing" class="content">
         <div class="content-title">
           Contributing
         </div>
         {{ site.data.index.contrib | markdownify }}
+        <div class="back-top">
+          <a href="#topbar">Back to top</a>
+        </div>
       </div>

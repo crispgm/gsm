@@ -40,7 +40,7 @@ guide: |
 
     Use a source with `source_name` and `source_url`.
 
-    ```--use```: Use the input source as well. Equivalent to `gsm add` and then `gsm use`.
+    `--use`: Use the input source as well. Equivalent to `gsm add` and then `gsm use`.
 
     ```
     $ gsm add Amethyst https://rubygems.org/
@@ -65,6 +65,8 @@ guide: |
     ### Mirror
 
     Mirror the source with `bundle`.
+
+    `--reset`: Reset mirror of bundle configuration.
 
     ```
     $ gsm mirror Amethyst

@@ -47,10 +47,6 @@ code.highlighter-rouge {
   padding-left: .2rem;
   padding-right: .2rem;
 }
-code.highlighter-rouge:hover {
-  color: white;
-  background-color: #aaaaaa;
-}
 #container {
   margin: 0 auto;
   max-width: 48rem;
@@ -62,7 +58,7 @@ code.highlighter-rouge:hover {
     padding-right: .5rem;
   }
 }
-.topbar {
+#topbar {
   height: 3rem;
   padding-top: 1rem;
   margin-bottom: 5rem;
@@ -129,21 +125,21 @@ code.highlighter-rouge:hover {
   }
 }
 .install-item {
-  padding: .5rem;
+  padding: .5rem 1rem .5rem 1rem;
   font-size: 1.2rem;
   color: #000;
   background-color: #fff;
-  border: 2px solid #000;
-  border-radius: 10px;
+  border: .15rem solid #000;
+  border-radius: .8rem;
 }
 .install-item:hover {
-  border: 2px solid #06c;
+  border: .15rem solid #06c;
 }
 .install-gsm {
-  margin-right: 8px;
+  margin-right: .5rem;
 }
 .install-user-guide {
-  margin-left: 8px;
+  margin-left: .5rem;
 }
 .install-item a {
   color: #000;
@@ -151,6 +147,9 @@ code.highlighter-rouge:hover {
 .install-item:hover a {
   color: #06c;
   text-decoration: none;
+}
+.back-top {
+  text-align: center;
 }
 #social {
   text-align: center;
