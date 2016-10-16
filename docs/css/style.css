@@ -20,6 +20,10 @@ body {
   word-wrap: break-word;
   text-align: center;
   height: 100%;
+  line-height: 1.5rem;
+}
+img {
+  border: 0;
 }
 a {
   text-decoration: none;
@@ -70,16 +74,37 @@ code.highlighter-rouge:hover {
   float: right;
   display: flex;
 }
+@media (max-width: 48rem) {
+  .title {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .menu {
+    float: none;
+    display: flex;
+    justify-content: center;
+  }
+}
 .menu-item {
   padding-left: 1rem;
-}
-#icon {
 }
 #intro {
   text-align: center;
 }
+#intro-logo {
+  text-align: center;
+}
+#intro-logo img {
+  width: 10rem;
+  height: 10rem;
+}
 #intro-text {
+  margin-top: 6rem;
   font-size: 2rem;
+}
+#intro-desc {
+  text-align: left;
+  margin-top: 2rem;
 }
 #intro-button {
   margin-top: 5rem;
@@ -87,6 +112,15 @@ code.highlighter-rouge:hover {
   margin-right: auto;
   display: flex;
   justify-content: center;
+}
+@media (max-width: 48rem) {
+  #intro-text {
+    margin-top: 3rem;
+    font-size: 1.1rem;
+  }
+  #intro-button {
+    margin-top: 2rem;
+  }
 }
 .install-item {
   padding: .5rem;
