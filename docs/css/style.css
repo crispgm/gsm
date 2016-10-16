@@ -74,6 +74,9 @@ code.highlighter-rouge:hover {
   float: right;
   display: flex;
 }
+.menu-item {
+  padding-left: 1rem;
+}
 @media (max-width: 48rem) {
   .title {
     margin-top: 2rem;
@@ -82,11 +85,11 @@ code.highlighter-rouge:hover {
   .menu {
     float: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
   }
-}
-.menu-item {
-  padding-left: 1rem;
+  .menu-item {
+    padding: 0;
+  }
 }
 #intro {
   text-align: center;
