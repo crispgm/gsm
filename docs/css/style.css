@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  width: 100%;
+  font-size: 16px;
+}
+@media (max-width: 48rem) {
+  html {
+    font-size: 12px;
+  }
+}
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+  background-color: #fbfbfb;
+  word-wrap: break-word;
+  text-align: center;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+  color: #06c;
+}
+a:hover {
+  text-decoration: underline;
+}
+pre.highlight {
+  border: .05rem solid #aaaaaa;
+  border-radius: .2rem;
+  font-family: Menlo, Monaco, "Source Code Pro", Consolas, Courier;
+  font-size: 1rem;
+}
+code.hljs {
+  padding: .8rem;
+}
+code.highlighter-rouge {
+  border: .05rem solid #aaaaaa;
+  border-radius: .2rem;
+  padding-left: .2rem;
+  padding-right: .2rem;
+}
+code.highlighter-rouge:hover {
+  color: white;
+  background-color: #aaaaaa;
+}
+#container {
+  margin: 0 auto;
+  max-width: 48rem;
+  text-align: left;
+}
+@media (max-width: 48rem) {
+  #container {
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+}
+.topbar {
+  height: 3rem;
+  padding-top: 1rem;
+  margin-bottom: 5rem;
+}
+.title {
+  font-weight: bold;
+}
+.menu {
+  float: right;
+  display: flex;
+}
+.menu-item {
+  padding-left: 1rem;
+}
+#icon {
+}
+#intro {
+  text-align: center;
+}
+#intro-text {
+  font-size: 2rem;
+}
+#intro-button {
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+}
+.install-item {
+  padding: .5rem;
+  font-size: 1.2rem;
+  color: #000;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+}
+.install-item:hover {
+  border: 2px solid #06c;
+}
+.install-gsm {
+  margin-right: 8px;
+}
+.install-user-guide {
+  margin-left: 8px;
+}
+.install-item a {
+  color: #000;
+}
+.install-item:hover a {
+  color: #06c;
+  text-decoration: none;
+}
+#social {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: solid #aaa .1rem;
+}
+.content {
+  padding-top: 3rem;
+  font-size: 1rem;
+  border-bottom: solid #aaa .1rem;
+  padding-bottom: 1.6rem;
+}
+.content-title {
+  text-align: center;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+footer {
+  /*text-align: center;*/
+  font-size: 1.2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

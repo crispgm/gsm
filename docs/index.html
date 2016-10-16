@@ -1,23 +1,43 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Home | GSM Sources Manager</title>
-    <link href="/gsm/css/style.css">
-  </head>
-  <body>
-    <div id="container">
-      <header class="topbar">
-        <div class="title">
-        </div>
-        <div class="menu">
-        </div>
-      </header>
-      <div class="icon">
+---
+permalink: index.html
+layout: default
+---
+      <div id="icon">
       </div>
-      <div class="intro">
-      	GSM is a simple sources manager for Gems.
+      <div id="intro">
+        <div id="intro-text">
+          GSM is a simple sources manager for Gems.
+        </div>
+        <div id="intro-button">
+          <div class="install-item install-gsm">
+            <a href="#install">Install GSM</a>
+          </div>
+          <div class="install-item install-user-guide">
+            <a href="#guide">User Guide</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </body>
-</html>
+      <div id="social">
+        <a class="github-button" href="https://github.com/crispgm/gsm" data-icon="octicon-star" data-count-href="/crispgm/gsm/stargazers" data-count-api="/repos/crispgm/gsm#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star crispgm/gsm on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/crispgm/gsm/fork" data-icon="octicon-repo-forked" data-count-href="/crispgm/gsm/network" data-count-api="/repos/crispgm/gsm#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork crispgm/gsm on GitHub">Fork</a>
+      </div>
+      <div id="install"  class="content">
+        <div class="content-title">
+          Installation
+        </div>
+        <div>
+          {{ site.data.index.install | markdownify }}
+        </div>
+      </div>
+      <div id="guide" class="content">
+        <div class="content-title">
+          User Guide
+        </div>
+        {{ site.data.index.guide | markdownify }}
+      </div>
+      <div id="contributing" class="content">
+        <div class="content-title">
+          Contributing
+        </div>
+        {{ site.data.index.contrib | markdownify }}
+      </div>
