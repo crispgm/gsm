@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["David Zhang"]
   spec.email         = ["crispgm@gmail.com"]
   spec.summary       = "GSM Sources Manager"
-  spec.description   = "GSM is GSM Sources Manager as a recursive acronym or simple Gem Sources Manager, which is used for getting RubyGem sources managed"
+  spec.description   = "GSM is a simple sources manager for RubyGems."
   spec.homepage      = "https://github.com/crispgm/gsm"
   spec.license       = "MIT"
 
