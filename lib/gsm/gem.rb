@@ -43,6 +43,9 @@ module Gsm
       outputs.split("\n").each do |line|
         line.strip!
         if validate_url?(line)
+          if @sources.length >= MAX_GENERATED_NAMES
+            return false
+          end
           name = generate_name
           @sources[name] = line
         end
@@ -158,14 +161,8 @@ module Gsm
     def generate_name
       gen_name = ""
 
-      while true
-        if @name_pivot < MAX_GENERATED_NAMES
-          gen_name = GEMSTONE_NAMES[@name_pivot].to_s
-        else
-          gen_name = GEMSTONE_NAMES[@name_pivot - MAX_GENERATED_NAMES].to_s << 
-            "-" << 
-            (@name_pivot % MAX_GENERATED_NAMES).to_s
-        end
+      while @name_pivot < MAX_GENERATED_NAMES
+        gen_name = GEMSTONE_NAMES[@name_pivot].to_s
 
         @name_pivot = @name_pivot + 1
 
@@ -173,6 +170,8 @@ module Gsm
           return gen_name
         end
       end
+
+      return false
     end
 
   end
