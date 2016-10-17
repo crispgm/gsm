@@ -7,7 +7,6 @@ class TestGem < Minitest::Test
         setup do
           system("rm test/conf/test_load.yml")
           @gem_load = Gsm::Gem.new("test/conf/test_load.yml")
-          `gem sources --add https://rubygems.org/`
         end
 
         should "load no use_name" do
@@ -15,11 +14,8 @@ class TestGem < Minitest::Test
         end
 
         should "load sources from gem command" do
-          if ENV["GSM_TEST_MODE"] == "CI"
-            assert_equal({"Amethyst" => "https://rubygems.org/"}, @gem_load.sources)
-          else
-            assert_equal({"Amethyst" => "https://gems.ruby-china.org/"}, @gem_load.sources)
-          end
+          `gem sources --add https://rubygems.org/`
+          assert_equal({"Amethyst" => "https://rubygems.org/"}, @gem_load.sources)
         end
 
         teardown do
