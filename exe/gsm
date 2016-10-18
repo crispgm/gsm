@@ -10,7 +10,17 @@ Mercenary.program(:gsm) do |p|
   p.description "GSM Sources Manager"
   p.syntax "gsm <subcommand> [options]"
 
-  gem = Gsm::Gem.new("sources.yml")
+  conf_path = ""
+  user_path = Dir.home()
+  Dir.chdir(user_path) do
+    if !Dir.exist?(".gsm")
+      Dir.mkdir(".gsm")
+    end
+  end
+
+  conf_path = "#{user_path}/.gsm/sources.yml"
+
+  gem = Gsm::Gem.new("#{user_path}/sources.yml")
 
   p.command(:list) do |c|
     c.syntax "list"

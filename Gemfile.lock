@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    gsm-sources-manager (1.0.0.alpha)
-      mercenary
+    gsm-sources-manager (1.0.0.alpha2)
+      mercenary (~> 0.3.6)
 
 GEM
   remote: https://rubygems.org/
@@ -13,7 +13,6 @@ GEM
     json (2.0.2)
     mercenary (0.3.6)
     minitest (5.9.1)
-    rake (11.3.0)
     shoulda-context (1.2.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
@@ -25,11 +24,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.6)
   codeclimate-test-reporter
   gsm-sources-manager!
   minitest
-  rake
   shoulda-context
 
 BUNDLED WITH
