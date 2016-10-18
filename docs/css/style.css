@@ -169,6 +169,15 @@ code.highlighter-rouge {
   font-size: 2rem;
   padding-bottom: 1rem;
 }
+.content-title-icon {
+  font-size: 1.5rem;
+}
+.content-title-icon a {
+  color: #fbfbfb;
+}
+.content-title:hover .content-title-icon a {
+  color: #333;
+}
 footer {
   /*text-align: center;*/
   font-size: 1.2rem;

@@ -31,7 +31,10 @@ layout: default
       </div>
       <div id="install"  class="content">
         <div class="content-title">
-          Installation
+          <span class="content-title-text">Installation</span>
+          <span class="content-title-icon">
+            <a href="#install"><i class="fa fa-paragraph"></i></a>
+          </span>
         </div>
         <div>
           {{ site.data.index.install | markdownify }}
@@ -42,7 +45,10 @@ layout: default
       </div>
       <div id="guide" class="content">
         <div class="content-title">
-          User Guide
+          <span class="content-title-text">User Guide</span>
+          <span class="content-title-icon">
+            <a href="#guide"><i class="fa fa-paragraph"></i></a>
+          </span>
         </div>
         {{ site.data.index.guide | markdownify }}
         <div class="back-top">
@@ -51,7 +57,10 @@ layout: default
       </div>
       <div id="changelog" class="content">
         <div class="content-title">
-          Changelog
+          <span class="content-title-text">Changelog</span>
+          <span class="content-title-icon">
+            <a href="#changelog"><i class="fa fa-paragraph"></i></a>
+          </span>
         </div>
         {% for change in site.data.changelog %}
           <h3>Version {{ change.version }}</h3>
@@ -72,7 +81,10 @@ layout: default
       </div>
       <div id="contributing" class="content">
         <div class="content-title">
-          Contributing
+          <span class="content-title-text">Contributing</span>
+          <span class="content-title-icon">
+            <a href="#contributing"><i class="fa fa-paragraph"></i></a>
+          </span>
         </div>
         {{ site.data.index.contrib | markdownify }}
         <div class="back-top">
