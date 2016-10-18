@@ -13,6 +13,7 @@ GEM
     json (2.0.2)
     mercenary (0.3.6)
     minitest (5.9.1)
+    rake (11.3.0)
     shoulda-context (1.2.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
@@ -27,6 +28,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   gsm-sources-manager!
   minitest
+  rake
   shoulda-context
 
 BUNDLED WITH
