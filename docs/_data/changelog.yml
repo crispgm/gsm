@@ -1,3 +1,11 @@
-- version: 1.0.0.alpha
+- version: "1.0.0.alpha3"
   changes:
-    - text: Initial Alpha Version
+    - text: "Release on RubyGem"
+    - text: "Bugfix: write conf to user directory"
+      issue: 5
+- version: "1.0.0.alpha2"
+  changes:
+    - text: "Limit number of gem sources"
+- version: "1.0.0.alpha"
+  changes:
+    - text: "Initial Alpha Version"
