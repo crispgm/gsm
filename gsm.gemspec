@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/crispgm/gsm"
   spec.license       = "MIT"
 
-  spec.required_ruby_version = '>= 2.3.0'
+  spec.required_ruby_version = '>= 2.2.5'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.bindir        = "exe"
