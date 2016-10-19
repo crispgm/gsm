@@ -21,6 +21,11 @@ module Gsm
       "Turquoise"
     ].freeze
 
+    EMBEDDED_SOURCES = [
+      :RubyGems  => "https://rubygems.org/",
+      :RubyChina => "https://gems.ruby-china.org/"
+    ].freeze
+
     def initialize(conf_path)
       @sources = Hash.new
       @use_name = ""
@@ -53,6 +58,7 @@ module Gsm
     end
 
     def add(name, url)
+      # check name
       return false if validate_name?(name)
 
       # validate url

@@ -61,7 +61,7 @@ TODO: API Reference of `libgsm`.
 
 * [RubyGems](https://rubygems.org/)
 * [RubyChina](https://gems.ruby-china.org/)
-* [Taobao](https://ruby.taobao.org/)
+* [Taobao](https://ruby.taobao.org/) _Deprecated_
 
 ## Contributing
 
