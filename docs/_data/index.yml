@@ -16,7 +16,9 @@ install: |
 guide: |
     ## Getting Started
 
-    Once you have installed and run `gsm` with commands other than `--help` or `--version`, `gsm` will load sources from current `gem sources -l` you set.
+    Once you have installed and bootstrapped `gsm` with commands other than `--help` or `--version`, `gsm` will load sources from local `gem sources -l`.
+
+    HINT: The sources will be named after gemstones, e.g. _Amethyst_.
 
     ## Commands
 
