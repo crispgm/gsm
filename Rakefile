@@ -10,6 +10,12 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
+task :site do
+  Dir.chdir("docs") do
+    sh "jekyll s"
+  end
+end
+
 task :count do
   files = `git ls-files -z`.split("\x0")
   shell_cmd = "wc -l "
