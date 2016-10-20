@@ -20,7 +20,7 @@ Mercenary.program(:gsm) do |p|
 
   conf_path = "#{user_path}/.gsm/sources.yml"
 
-  gem = Gsm::Gem.new("#{user_path}/sources.yml")
+  gem = Gsm::Gem.new(conf_path)
 
   p.command(:list) do |c|
     c.syntax "list"
