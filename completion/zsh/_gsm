@@ -1,0 +1,7 @@
+#compdef gsm
+#autoload
+
+_gsm() {
+}
+
+_gsm "$@"
