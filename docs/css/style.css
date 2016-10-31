@@ -42,10 +42,9 @@ code.hljs {
   padding: .8rem;
 }
 code.highlighter-rouge {
-  border: .05rem solid #aaaaaa;
+  background-color: #ddd;
   border-radius: .2rem;
-  padding-left: .2rem;
-  padding-right: .2rem;
+  padding: .1rem .3rem .1rem .3rem;
 }
 #container {
   margin: 0 auto;
