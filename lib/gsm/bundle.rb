@@ -1,14 +1,16 @@
 module Gsm
-  class Bundle
+  module Bundle
+    class << self
 
-    RUBY_GEM_URL = "https://rubygems.org/".freeze
+      RUBY_GEM_URL = "https://rubygems.org/".freeze
 
-    def self.mirror(dst_url, src_url = RUBY_GEM_URL)
-      `bundle config mirror.#{src_url} #{dst_url}`
-    end
+      def mirror(dst_url, src_url = RUBY_GEM_URL)
+        `bundle config mirror.#{src_url} #{dst_url}`
+      end
 
-    def self.reset
-      self.mirror(RUBY_GEM_URL)
+      def reset
+        self.mirror(RUBY_GEM_URL)
+      end
     end
   end
 end
