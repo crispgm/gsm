@@ -6,7 +6,6 @@
 [![Code Climate](https://codeclimate.com/github/crispgm/gsm/badges/gpa.svg)](https://codeclimate.com/github/crispgm/gsm)
 [![Test Coverage](https://codeclimate.com/github/crispgm/gsm/badges/coverage.svg)](https://codeclimate.com/github/crispgm/gsm/coverage)
 [![Join the chat at https://gitter.im/crispgm/gsm](https://badges.gitter.im/crispgm/gsm.svg)](https://gitter.im/crispgm/gsm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![BADGINATOR](https://badginator.herokuapp.com/crispgm/gsm.svg)](https://github.com/defunctzombie/badginator)
 
 GSM is a simple sources manager for RubyGems. GSM means GSM Sources Manager as a recursive acronym or simply Gem Sources Manager.
 
