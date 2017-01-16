@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "shoulda-context"
-  spec.add_development_dependency "codeclimate-test-reporter", "0.6.0"
+  spec.add_development_dependency "codeclimate-test-reporter", "~> 1.0.0"
 
   spec.add_dependency "mercenary", "~> 0.3.6"
 end

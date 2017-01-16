@@ -8,3 +8,5 @@ env:
 addons:
   code_climate:
     repo_token: a3b92a7e935316eab6293228fa587784c95b9dd10ab61adb4fdb9ecb6ca330d8
+after_sucess:
+  - bundle exec codeclimate-test-reporter
