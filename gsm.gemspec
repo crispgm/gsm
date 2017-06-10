@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "codeclimate-test-reporter", "~> 1.0.0"
 
   spec.add_dependency "mercenary", "~> 0.3.6"
+  spec.add_dependency "colorize"
 end
