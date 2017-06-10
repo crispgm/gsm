@@ -1,3 +1,11 @@
+- version: "1.0.0.beta1"
+  changes:
+    - text: "Polish docs"
+      issue: 12
+    - text: "Use colored error message"
+      issue: 13
+    - text: "Bugfix: illegal name/url cause exception"
+      issue: 13
 - version: "1.0.0.alpha5"
   changes:
     - text: "Bugfix: unintended path to `sources.yml`"

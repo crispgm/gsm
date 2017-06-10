@@ -1,3 +1,3 @@
 module Gsm
-  VERSION = "1.0.0.alpha5".freeze
+  VERSION = "1.0.0.beta1".freeze
 end
