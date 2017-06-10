@@ -28,6 +28,8 @@ guide: |
 
     ```
     $ gsm list
+
+    Amethyst: https://gems.ruby-china.org/
     ```
 
     ### Use
@@ -36,6 +38,14 @@ guide: |
 
     ```
     $ gsm use Amethyst
+
+    GSM: Source `Amethyst` has been applied.
+    ```
+
+    ```
+    $ gsm list
+
+    Amethyst: https://rubygems.org/ (*)
     ```
 
     ### Add
