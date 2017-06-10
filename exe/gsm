@@ -47,7 +47,7 @@ Mercenary.program(:gsm) do |p|
       if use
         puts "GSM: Source `#{use}` has been applied."
       else
-        puts "GSM Error: Illegal source `#{name}`."
+        Gsm::Util.error("Illegal source `#{name}`.")
       end
     end
   end
@@ -63,14 +63,19 @@ Mercenary.program(:gsm) do |p|
       url = args[1]
       is_use = opts["use"]
 
+      if args.size < 2
+        Gsm::Util.error("Illegal name/url.")
+        return
+      end
+
       if gem.add(name, url)
         if is_use
           if !gem.use(name)
-            puts "GSM Error: Illegal source `#{name}`."
+            Gsm::Util.error("Illegal source `#{name}`.")
           end
         end
       else
-        puts "GSM Error: Illegal name/url."
+        Gsm::Util.error("Illegal name/url.")
       end
     end
   end
@@ -83,10 +88,10 @@ Mercenary.program(:gsm) do |p|
       name = args[0]
       ret = gem.del(name)
       if ret == false
-        puts "GSM Error: Source is in use. Please switch to other source in advance."
+        Gsm::Util.error("Source is in use. Please switch to other source in advance.")
         return
       elsif ret == nil
-        puts "GSM Error: No source name with `#{name}`."
+        Gsm::Util.error("No source name with `#{name}`.")
         return
       end
     end
@@ -116,7 +121,7 @@ Mercenary.program(:gsm) do |p|
       if args.size == 0
         name = gem.get
         if name.empty?
-          puts "GSM Error: no default source for mirror."
+          Gsm::Util.error("no default source for mirror.")
           return
         end
       else
