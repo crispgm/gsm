@@ -5,22 +5,21 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/3mgxei9imr94w67k?svg=true)](https://ci.appveyor.com/project/crispgm/gsm)
 [![Code Climate](https://codeclimate.com/github/crispgm/gsm/badges/gpa.svg)](https://codeclimate.com/github/crispgm/gsm)
 [![Test Coverage](https://codeclimate.com/github/crispgm/gsm/badges/coverage.svg)](https://codeclimate.com/github/crispgm/gsm/coverage)
-[![Join the chat at https://gitter.im/crispgm/gsm](https://badges.gitter.im/crispgm/gsm.svg)](https://gitter.im/crispgm/gsm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 GSM is a simple sources manager for RubyGems. GSM means GSM Sources Manager as a recursive acronym or simply Gem Sources Manager.
 
 In Ruby development, we always need alternative RubyGems source in special networks. e.g. In China Mainland, you know. GSM helps get your gem sources managed.
 
-## Installation
+# Installation
 
-### Install with RubyGems
+## Install with RubyGems
 
 ```
 $ gem install gsm-sources-manager
 $ gsm --version
 ```
 
-### Or, you may install manually
+## Or, you may install manually
 
 ```
 $ git clone https://github.com/crispgm/gsm.git
@@ -28,41 +27,93 @@ $ bundle install
 $ bundle exec exe/gsm --version
 ```
 
-## Usage
+# Documentation
+
+## Getting Started
+
+Once you have installed and bootstrapped `gsm` with commands other than `--help` or `--version`, `gsm` will load sources from local `gem sources -l`.
+HINT: The sources will be named after gemstones, e.g. _Amethyst_.
+
+## Commands
+
+### List
+
+List sources within `gsm`.
 
 ```
-Usage:
-
-  gsm <subcommand> [options]
-
-Options:
-        -h, --help         Show this message
-        -v, --version      Print the name and version
-        -t, --trace        Show the full backtrace when an error occurs
-
-Subcommands:
-  list                  List all sources
-  use                   Use source
-  add                   Add source
-  del                   Delete source
-  reset                 Reset all sources
-  mirror                Mirror source for Bundler
-  help                  Show usage
+$ gsm list
+Amethyst: https://gems.ruby-china.org/
 ```
 
-See <https://crispgm.github.io/gsm/#guide> for details.
+### Use
 
-## API Reference
+Use a source with `source_name`.
 
-TODO: API Reference of `libgsm`.
+```
+$ gsm use Amethyst
+GSM: Source `Amethyst` has been applied.
+```
+```
+$ gsm list
 
-## Sources
+Amethyst: https://rubygems.org/ (*)
+```
+
+### Add
+
+Use a source with `source_name` and `source_url`.
+
+`--use`: Use the input source as well. Equivalent to `gsm add` and then `gsm use`.
+
+```
+$ gsm add Amethyst https://rubygems.org/
+```
+
+#### Available Sources
 
 * [RubyGems](https://rubygems.org/)
 * [RubyChina](https://gems.ruby-china.org/)
 * [Taobao](https://ruby.taobao.org/) _Deprecated_
 
-## Contributing
+### Del
+
+Delete a source with `source_name`.
+
+```
+$ gsm del Amethyst
+```
+
+### Reset
+
+Reset all sources.
+
+```
+$ gsm reset
+```
+
+### Mirror
+
+Mirror the source with `bundle`.
+
+`--reset`: Reset mirror of bundle configuration.
+
+```
+$ gsm mirror Amethyst
+```
+
+### Help
+
+Show help info.
+
+```
+$ gsm help
+```
+
+## API Reference
+
+TODO: API Reference of `libgsm`.
+
+# Contributing
 
 * [GSM Sources Manager](https://github.com/crispgm/gsm) is licensed under [MIT License](/LICENSE).
 * If there is a bug, you may [file an issue](https://github.com/crispgm/gsm/issues/new) or pull request directly.
