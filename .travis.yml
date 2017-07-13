@@ -6,7 +6,7 @@ rvm:
 env:
   - GSM_TEST_MODE: CI
   - CODECLIMATE_REPO_TOKEN: a3b92a7e935316eab6293228fa587784c95b9dd10ab61adb4fdb9ecb6ca330d8
-after_sucess:
+after_success:
   - bundle exec codeclimate-test-reporter
 notifications:
   email: false
