@@ -3,142 +3,175 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), *%w(.. lib)))
 
 require "gsm"
-require "mercenary"
+require "commander"
 
-Mercenary.program(:gsm) do |p|
-  p.version Gsm::VERSION
-  p.description "GSM Sources Manager"
-  p.syntax "gsm <subcommand> [options]"
+class Application
+  include Commander::Methods
 
-  conf_path = ""
-  user_path = Dir.home()
-  Dir.chdir(user_path) do
-    if !Dir.exist?(".gsm")
-      Dir.mkdir(".gsm")
-    end
-  end
+  def run
+    program :name, "gsm"
+    program :version, Gsm::VERSION
+    program :description, "GSM Sources Manager"
 
-  conf_path = "#{user_path}/.gsm/sources.yml"
-
-  gem = Gsm::Gem.new(conf_path)
-
-  p.command(:list) do |c|
-    c.syntax "list"
-    c.description "List all sources"
-
-    c.action do |_, _|
-      gem.sources.each do |name, url|
-        use_mark = ""
-        if gem.get == name
-          use_mark = "(*)"
-        end
-        puts "#{name}: #{url} #{use_mark}"
+    conf_path = ""
+    user_path = Dir.home()
+    Dir.chdir(user_path) do
+      if !Dir.exist?(".gsm")
+        Dir.mkdir(".gsm")
       end
     end
-  end
 
-  p.command(:use) do |c|
-    c.syntax "use [source]"
-    c.description "Use source"
+    conf_path = "#{user_path}/.gsm/sources.yml"
 
-    c.action do |args, _|
-      name = args[0]
-      use = gem.use(name)
-      if use
-        puts "GSM: Source `#{use}` has been applied."
-      else
-        Gsm::Util.error("Illegal source `#{name}`.")
-      end
-    end
-  end
+    gem = Gsm::Gem.new(conf_path)
 
-  p.command(:add) do |c|
-    c.syntax "add [name] [url]"
-    c.description "Add source"
+    command :list do |c|
+      c.syntax = "list"
+      c.description = "List all sources"
 
-    c.option "use", "--use", "Add and use source"
-
-    c.action do |args, opts|
-      name = args[0]
-      url = args[1]
-      is_use = opts["use"]
-
-      if args.size < 2
-        Gsm::Util.error("Illegal name/url.")
-        return
-      end
-
-      if gem.add(name, url)
-        if is_use
-          if !gem.use(name)
-            Gsm::Util.error("Illegal source `#{name}`.")
+      c.action do |_, _|
+        gem.sources.each do |name, url|
+          use_mark = ""
+          if gem.get == name
+            use_mark = "(*)"
           end
+          puts "#{name}: #{url} #{use_mark}"
         end
-      else
-        Gsm::Util.error("Illegal name/url.")
       end
     end
-  end
 
-  p.command(:del) do |c|
-    c.syntax "del [source]"
-    c.description "Delete source"
+    command :use do |c|
+      c.syntax = "use [source]"
+      c.description = "Use source"
 
-    c.action do |args, _|
-      name = args[0]
-      ret = gem.del(name)
-      if ret == false
-        Gsm::Util.error("Source is in use. Please switch to other source in advance.")
-        return
-      elsif ret == nil
-        Gsm::Util.error("No source name with `#{name}`.")
-        return
+      c.action do |args, _|
+        name = args[0]
+        use = gem.use(name)
+        if use
+          puts "GSM: Source `#{use}` has been applied."
+        else
+          Gsm::Util.error("Illegal source `#{name}`.")
+        end
       end
     end
-  end
 
-  p.command(:reset) do |c|
-    c.syntax "reset"
-    c.description "Reset all sources"
+    command :add do |c|
+      c.syntax = "add [name] [url]"
+      c.description = "Add source"
 
-    c.action do |_, _|
-      gem.reset
-    end
-  end
+      c.option "use", "--use", "Add and use source"
 
-  p.command(:mirror) do |c|
-    c.syntax "mirror [source]"
-    c.description "Mirror source for Bundler"
+      c.action do |args, opts|
+        name = args[0]
+        url = args[1]
+        is_use = opts["use"]
 
-    c.option "reset", "--reset", "Reset bundler mirror"
-
-    c.action do |args, opts|
-      if opts["reset"]
-        Gsm::Bundle.reset
-        return
-      end
-
-      if args.size == 0
-        name = gem.get
-        if name.empty?
-          Gsm::Util.error("no default source for mirror.")
+        if args.size < 2
+          Gsm::Util.error("Illegal name/url.")
           return
         end
-      else
-        name = args[0]
+
+        if gem.add(name, url)
+          if is_use
+            if !gem.use(name)
+              Gsm::Util.error("Illegal source `#{name}`.")
+            end
+          end
+
+          puts "Gem #{name}: #{url} added."
+        else
+          Gsm::Util.error("Illegal name/url.")
+        end
       end
-      Gsm::Bundle.mirror(gem.sources[name])
     end
-  end
 
-  p.command(:help) do |c|
-    c.syntax "help"
-    c.description "Show usage"
+    command :del do |c|
+      c.syntax = "del [source]"
+      c.description = "Delete source"
 
-    c.action do |_, _|
-      puts p
+      c.action do |args, _|
+        name = args[0]
+        ret = gem.del(name)
+        if ret == false
+          Gsm::Util.error("Source is in use. Please switch to other source in advance.")
+          return
+        elsif ret == nil
+          Gsm::Util.error("No source name with `#{name}`.")
+          return
+        end
+      end
     end
-  end
 
-  p.default_command(:help)
+    command :reset do |c|
+      c.syntax = "reset"
+      c.description = "Reset all sources"
+
+      c.action do |_, _|
+        gem.reset
+        puts "All gems are reset."
+      end
+    end
+
+    command :mirror do |c|
+      c.syntax = "mirror [source]"
+      c.description = "Mirror source for Bundler"
+
+      c.option "reset", "--reset", "Reset bundler mirror"
+
+      c.action do |args, opts|
+        if opts["reset"]
+          Gsm::Bundle.reset
+          return
+        end
+
+        if args.size == 0
+          name = gem.get
+          if name.empty?
+            Gsm::Util.error("no default source for mirror.")
+            return
+          else
+            puts "No specified source: use default `#{name}`."
+          end
+        else
+          name = args[0]
+        end
+        if Gsm::Bundle.mirror(gem.sources[name]).empty?
+          puts "`#{name}` has been set mirror for bundler."
+          puts
+          puts "Use `bundle config` to check."
+        end
+      end
+    end
+
+    command :help do |c|
+      c.syntax = "help"
+      c.description = "Show usage"
+
+      c.action do |_, _|
+        puts "gsm sources manager"
+        puts
+        puts "gsm <subcommand> [options]"
+        puts
+        puts "Options:"
+        puts "\t--version"
+        puts "\t--help"
+        puts
+        puts "Subcommands:"
+        puts "\tlist"
+        puts "\tuse"
+        puts "\tadd"
+        puts "\tlist"
+        puts "\tdel"
+        puts "\treset"
+        puts "\tmirror"
+      end
+    end
+
+    alias_command :rm, :del
+    alias_command :remove, :del
+
+    run!
+  end
 end
+
+Application.new.run if $0 == __FILE__
